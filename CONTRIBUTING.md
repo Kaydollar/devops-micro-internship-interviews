@@ -202,36 +202,36 @@ git pull --ff-only upstream main
 2. **Create a feature branch**
 
 ```bash
-git checkout -b Q####-kebab-title
+git checkout -b add-kebab-title
 ```
 
 3. **Add your question**
 
-* Path: `weeks/<week>/questions/`
-* File: `Q####-kebab-title.md`
+* Path: `<topic>/questions/`
+* File: `##-kebab-title.md` — use the next sequential number in that topic (check how many files exist)
 * Include frontmatter and sections (see below)
 
 4. **Run validators manually (optional)**
 
 ```bash
-python scripts/validate_frontmatter.py && python scripts/build_index.py
+python _internal/scripts/validate_frontmatter.py && python _internal/scripts/build_index.py
 ```
 
 5. **Commit** (pre-commit will auto-validate)
 
 ```bash
-git add weeks/<week>/questions/Q####-kebab-title.md
-git commit -m "question(Q0401): add IAM role vs user with pitfalls and refs"
+git add <topic>/questions/##-kebab-title.md
+git commit -m "question(06-terraform/07): add how to structure modules"
 ```
 
 6. **Push & open PR**
 
 ```bash
-git push -u origin Q####-kebab-title
+git push -u origin add-kebab-title
 ```
 
 On GitHub → **Compare & pull request**.
-Base: `pravinmishraaws/main` • Compare: `yourusername/Q####-kebab-title`
+Base: `pravinmishraaws/main` • Compare: `yourusername/add-kebab-title`
 
 7. **Fill PR description**
 
@@ -241,13 +241,13 @@ Base: `pravinmishraaws/main` • Compare: `yourusername/Q####-kebab-title`
 
 ## Every PR: Quick Checklist
 
-* [ ] **One question per file** → `weeks/<week>/questions/Q####-kebab-title.md`
+* [ ] **One question per file** → `<topic>/questions/##-kebab-title.md` (next sequential number in that topic)
 * [ ] **Frontmatter** includes: `id, title, difficulty, week, topics, tags, author, reviewed`
 * [ ] **Structure**: Short Answer → Deep Dive → Pitfalls → References
 * [ ] **Run locally** (auto via pre-commit) or manually:
 
   ```bash
-  python scripts/validate_frontmatter.py && python scripts/build_index.py
+  python _internal/scripts/validate_frontmatter.py && python _internal/scripts/build_index.py
   ```
 * [ ] **Rebase on main** before pushing
 * [ ] **Cite sources**; avoid plagiarism
@@ -264,11 +264,11 @@ Base: `pravinmishraaws/main` • Compare: `yourusername/Q####-kebab-title`
 git fetch upstream
 git checkout main
 git pull --ff-only upstream main
-git checkout Q####-kebab-title
+git checkout add-kebab-title
 git rebase main
 # If conflicts: fix -> git add <files> -> git rebase --continue
 # If you rewrote history: 
-git push --force-with-lease origin Q####-kebab-title
+git push --force-with-lease origin add-kebab-title
 ```
 
 > Why: Linear history keeps diffs clean and reviews fast.
@@ -281,7 +281,7 @@ git push --force-with-lease origin Q####-kebab-title
 
 ```yaml
 ---
-id: Q0001
+id: 1
 title: OSI vs TCP/IP — what’s the practical difference?
 difficulty: entry         # one of: entry | easy | medium | hard | expert
 week: 00
@@ -292,7 +292,7 @@ reviewed: false
 ---
 ```
 
-**Tip:** `id` number must match the file name (`Q0001-…md`).
+**Tip:** `id` is the sequential number matching the `##-` prefix of the filename. If your file is `04-my-question.md`, then `id: 4`.
 
 ### Recommended sections
 
@@ -318,15 +318,15 @@ Common mistakes and how to avoid them.
 **Conventional Commit** examples:
 
 ```
-question(Q0401): add IAM role vs user
-docs: improve contributing guide with pre-commit hook
+question(04-aws/05): add IAM role vs user
+docs: improve contributing guide
 chore: fix build index path
 ```
 
 **PR title**:
 
 ```
-question(Q0401): add IAM role vs user with pitfalls and references
+question(04-aws/05): add IAM role vs user with pitfalls and references
 ```
 
 **PR description**:

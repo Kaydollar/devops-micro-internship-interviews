@@ -31,13 +31,13 @@ jobs:
       - name: Install deps (from trusted base)
         run: |
           python -m pip install --upgrade pip
-          pip install -r base/scripts/requirements.txt
+          pip install -r base/_internal/scripts/requirements.txt
 
       - name: Validate frontmatter (point scripts at PR dir)
-        run: python base/scripts/validate_frontmatter.py pr
+        run: python base/_internal/scripts/validate_frontmatter.py pr
 
-      - name: Build week indexes (into PR workspace)
-        run: python base/scripts/build_index.py pr
+      - name: Build topic indexes (into PR workspace)
+        run: python base/_internal/scripts/build_index.py pr
 
       - name: Fail if index changes not committed
         working-directory: pr
